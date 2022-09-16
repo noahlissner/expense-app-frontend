@@ -1,15 +1,24 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import img from "../assets/group.png";
+import GroupInfoSquares from "../components/GroupInfoSquares";
 
 const Test = () => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>Test</Text>
-      </View>
-    </SafeAreaView>
+    <View style={styles.wrapper}>
+      {/* Top squares */}
+      <GroupInfoSquares />
+    </View>
   );
 };
 
 export default Test;
+
+const styles = StyleSheet.create({
+  wrapper: {
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 30,
+  },
+});
