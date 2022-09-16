@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   View,
   Text,
@@ -5,11 +6,30 @@ import {
   Pressable,
   Image,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import AppleIcon from "../assets/apple-icon.png";
 import GoogleIcon from "../assets/google-icon.png";
+import { login } from "../features/auth/authSlice";
 
 const Login = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  const { isLoading } = useSelector((state) => state.auth);
+
+  const handleSubmit = () => {
+    const data = {
+      email,
+      password,
+    };
+
+    dispatch(login(data));
+  };
+
   return (
     <View style={styles.wrapper}>
       {/* Top Container */}
@@ -21,12 +41,14 @@ const Login = ({ navigation }) => {
             style={styles.input}
             placeholder="Email"
             textContentType="emailAddress"
+            onChangeText={(text) => setEmail(text)}
           />
           <TextInput
             style={[styles.input, styles.inputGap]}
             placeholder="Password"
             textContentType="password"
             secureTextEntry={true}
+            onChangeText={(text) => setPassword(text)}
           />
           <Pressable
             style={({ pressed }) => [
@@ -41,7 +63,7 @@ const Login = ({ navigation }) => {
         </View>
         {/* Login Button */}
         <Pressable
-          onPress={() => navigation.navigate("Dashboard")}
+          onPress={handleSubmit}
           style={({ pressed }) => [
             {
               backgroundColor: pressed ? "#144EFE" : "#3869FE",
@@ -49,7 +71,11 @@ const Login = ({ navigation }) => {
             styles.loginBtn,
           ]}
         >
-          <Text style={styles.loginBtnText}>Login</Text>
+          {isLoading ? (
+            <ActivityIndicator color={"#fff"} />
+          ) : (
+            <Text style={styles.loginBtnText}>Login</Text>
+          )}
         </Pressable>
         <View style={styles.continueWithContainer}>
           <View style={styles.continueWith}>
