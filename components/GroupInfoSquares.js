@@ -11,30 +11,6 @@ const GroupInfoSquares = () => {
       <View style={styles.infoSquareRight}>
         <View style={styles.participantContainer}>
           <Image source={img} />
-          {/* <View style={styles.participant}>
-              <Ionicons
-                // style={styles.participant}
-                name="person"
-                size={24}
-                color="green"
-              />
-            </View>
-            <View style={styles.participant}>
-              <Ionicons
-                // style={styles.participant}
-                name="person"
-                size={24}
-                color="blue"
-              />
-            </View>
-            <View style={styles.participant}>
-              <Ionicons
-                // style={styles.participant}
-                name="person"
-                size={24}
-                color="darkorange"
-              />
-            </View> */}
         </View>
         <Text style={styles.infoSquareRightText}>Participants</Text>
       </View>
@@ -88,15 +64,5 @@ const styles = StyleSheet.create({
 
   participantContainer: {
     marginBottom: 5,
-    flexDirection: "row",
-  },
-  participant: {
-    marginRight: -15,
-    backgroundColor: "#fff",
-    borderRadius: 50,
-    width: 32,
-    height: 32,
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
