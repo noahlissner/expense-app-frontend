@@ -10,9 +10,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import AppleIcon from "../assets/apple-icon.png";
-import GoogleIcon from "../assets/google-icon.png";
 import { register } from "../features/auth/authSlice";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Register = ({ navigation }) => {
   const [firstname, setFirstname] = useState("");
@@ -117,10 +116,10 @@ const Register = ({ navigation }) => {
           {/* Google & apple login */}
           <View style={styles.loginWith}>
             <Pressable style={styles.appleLogin}>
-              <Image source={AppleIcon} style={styles.appleIcon} />
+              <Ionicons name="logo-apple" size={32} />
             </Pressable>
             <Pressable style={styles.googleLogin}>
-              <Image source={GoogleIcon} style={styles.googleIcon} />
+              <Ionicons name="logo-google" size={32} />
             </Pressable>
           </View>
         </View>
