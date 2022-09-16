@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./Home";
@@ -13,6 +13,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./store/store";
 import { initUser } from "./features/auth/authSlice";
+import Modal from "./screens/Modal";
 
 const Stack = createNativeStackNavigator();
 
@@ -74,55 +75,85 @@ const App = () => {
             </>
           ) : (
             <>
-              <Stack.Screen
-                name="Dashboard"
-                component={Dashboard}
-                options={{
-                  headerStyle: {
-                    backgroundColor: "#F1F3F4",
-                  },
-                  headerShadowVisible: false,
-                  headerTitle: "Dashboard",
-                  headerTitleStyle: {
-                    fontSize: 24,
-                    fontWeight: "500",
-                  },
-                  headerRight: () => (
-                    <TouchableOpacity>
-                      <Ionicons
-                        name="settings-outline"
-                        size={24}
-                        color="#2D2F33"
-                      />
-                    </TouchableOpacity>
-                  ),
-                }}
-              />
-              <Stack.Screen
-                name="Test"
-                component={Test}
-                options={{
-                  headerStyle: {
-                    backgroundColor: "#F1F3F4",
-                  },
-                  headerShadowVisible: false,
-                  headerBackTitleVisible: false,
-                  headerTitle: "Test",
-                  headerTitleStyle: {
-                    fontSize: 24,
-                    fontWeight: "500",
-                  },
-                  headerRight: () => (
-                    <TouchableOpacity>
-                      <Ionicons
-                        name="settings-outline"
-                        size={24}
-                        color="#2D2F33"
-                      />
-                    </TouchableOpacity>
-                  ),
-                }}
-              />
+              <Stack.Group>
+                <Stack.Screen
+                  name="Dashboard"
+                  component={Dashboard}
+                  options={({ navigation }) => ({
+                    headerStyle: {
+                      backgroundColor: "#F1F3F4",
+                    },
+                    headerShadowVisible: false,
+                    headerTitle: "Dashboard",
+                    headerTitleStyle: {
+                      fontSize: 24,
+                      fontWeight: "500",
+                    },
+                    headerRight: () => (
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate("Modal")}
+                      >
+                        <Ionicons
+                          name="settings-outline"
+                          size={24}
+                          color="#2D2F33"
+                        />
+                      </TouchableOpacity>
+                    ),
+                  })}
+                />
+                <Stack.Screen
+                  name="Test"
+                  component={Test}
+                  options={{
+                    headerStyle: {
+                      backgroundColor: "#F1F3F4",
+                    },
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false,
+                    headerTitle: "Test",
+                    headerTitleStyle: {
+                      fontSize: 24,
+                      fontWeight: "500",
+                    },
+                    headerRight: () => (
+                      <TouchableOpacity>
+                        <Ionicons
+                          name="settings-outline"
+                          size={24}
+                          color="#2D2F33"
+                        />
+                      </TouchableOpacity>
+                    ),
+                  }}
+                />
+              </Stack.Group>
+              <Stack.Group screenOptions={{ presentation: "modal" }}>
+                <Stack.Screen
+                  name="Modal"
+                  component={Modal}
+                  options={({ navigation }) => ({
+                    headerStyle: {
+                      backgroundColor: "#F1F3F4",
+                    },
+                    headerTitleStyle: {
+                      fontSize: 20,
+                      fontWeight: "500",
+                    },
+                    headerShadowVisible: false,
+                    headerTitle: "Settings",
+                    headerRight: () => (
+                      <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Ionicons
+                          name="close-outline"
+                          size={30}
+                          color="#2D2F33"
+                        />
+                      </TouchableOpacity>
+                    ),
+                  })}
+                />
+              </Stack.Group>
             </>
           )}
         </Stack.Navigator>
