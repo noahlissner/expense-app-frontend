@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import img from "../assets/group.png";
 import GroupInfoSquares from "../components/GroupInfoSquares";
 
 const Test = () => {
