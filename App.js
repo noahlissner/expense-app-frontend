@@ -14,6 +14,7 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./store/store";
 import { initUser } from "./features/auth/authSlice";
 import Modal from "./screens/Modal";
+import CreateGroup from "./screens/CreateGroup";
 
 const Stack = createNativeStackNavigator();
 
@@ -142,6 +143,31 @@ const App = () => {
                     },
                     headerShadowVisible: false,
                     headerTitle: "Settings",
+                    headerRight: () => (
+                      <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Ionicons
+                          name="close-outline"
+                          size={30}
+                          color="#2D2F33"
+                        />
+                      </TouchableOpacity>
+                    ),
+                  })}
+                />
+
+                <Stack.Screen
+                  name="CreateGroup"
+                  component={CreateGroup}
+                  options={({ navigation }) => ({
+                    headerStyle: {
+                      backgroundColor: "#F1F3F4",
+                    },
+                    headerTitleStyle: {
+                      fontSize: 20,
+                      fontWeight: "500",
+                    },
+                    headerShadowVisible: false,
+                    headerTitle: "Create Group",
                     headerRight: () => (
                       <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Ionicons
