@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Pressable,
-  FlatList,
-} from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import GroupInfoSquares from "../components/GroupInfoSquares";
@@ -69,6 +62,7 @@ const Test = () => {
         </View>
         <View style={styles.mainContainer}>
           {/* Expenses */}
+
           {active === "Expenses" && (
             <View style={styles.expensesContainer}>
               <FlatList

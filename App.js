@@ -19,16 +19,15 @@ import CreateGroup from "./screens/CreateGroup";
 const Stack = createNativeStackNavigator();
 
 export default function AppWrapper() {
-  return (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+	return (
+		<Provider store={store}>
+			<App />
+		</Provider>
+	);
 }
 
 const App = () => {
-  const { user } = useSelector((state) => state.auth);
-  console.log(user);
+	const { user } = useSelector((state) => state.auth);
 
   return (
     <SafeAreaProvider>
@@ -189,10 +188,10 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 });

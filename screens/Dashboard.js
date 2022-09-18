@@ -5,6 +5,8 @@ import {
   Pressable,
   StyleSheet,
   TouchableOpacity,
+  RefreshControl,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,31 +15,51 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
 const Dashboard = ({ navigation }) => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = React.useState(false);
+  
+  	useEffect(() => {
+		dispatch(fetchGroups());
+	}, []);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
   return (
     <SafeAreaView>
       <View style={styles.wrapper}>
-        <TouchableOpacity
-          style={styles.cardWrapepr}
-          onPress={() => navigation.navigate("Test")}
+        <ScrollView
+          contentContainerStyle={styles.scrollView}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         >
-          <GroupCard />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cardWrapepr}
-          onPress={() => navigation.navigate("Test")}
-        >
-          <GroupCard />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cardWrapepr}
-          onPress={() => navigation.navigate("Test")}
-        >
-          <GroupCard />
-        </TouchableOpacity>
-
+          <TouchableOpacity
+            style={styles.cardWrapepr}
+            onPress={() => navigation.navigate("Test")}
+          >
+            <GroupCard />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cardWrapepr}
+            onPress={() => navigation.navigate("Test")}
+          >
+            <GroupCard />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cardWrapepr}
+            onPress={() => navigation.navigate("Test")}
+          >
+            <GroupCard />
+          </TouchableOpacity>
+        </ScrollView>
         <Pressable
           onPress={() => navigation.navigate("CreateGroup")}
           style={({ pressed }) => [
@@ -57,25 +79,25 @@ const Dashboard = ({ navigation }) => {
 export default Dashboard;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginRight: 30,
-    marginLeft: 30,
-    height: "100%",
-  },
-  cardWrapepr: {
-    marginBottom: 10,
-  },
+	wrapper: {
+		marginRight: 30,
+		marginLeft: 30,
+		height: '100%',
+	},
+	cardWrapepr: {
+		marginBottom: 10,
+	},
 
-  // Button to add group
-  addBtn: {
-    position: "absolute",
-    bottom: 0,
-    left: "50%",
-    transform: [{ translateX: -32 }],
-    height: 65,
-    width: 65,
-    borderRadius: 999,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+	// Button to add group
+	addBtn: {
+		position: 'absolute',
+		bottom: 0,
+		left: '50%',
+		transform: [{ translateX: -32 }],
+		height: 65,
+		width: 65,
+		borderRadius: 999,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 });
