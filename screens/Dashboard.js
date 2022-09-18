@@ -5,6 +5,8 @@ import {
   Pressable,
   StyleSheet,
   TouchableOpacity,
+  RefreshControl,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,31 +15,48 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useDispatch } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
 const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
   return (
     <SafeAreaView>
       <View style={styles.wrapper}>
-        <TouchableOpacity
-          style={styles.cardWrapepr}
-          onPress={() => navigation.navigate("Test")}
+        <ScrollView
+          contentContainerStyle={styles.scrollView}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         >
-          <GroupCard />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cardWrapepr}
-          onPress={() => navigation.navigate("Test")}
-        >
-          <GroupCard />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.cardWrapepr}
-          onPress={() => navigation.navigate("Test")}
-        >
-          <GroupCard />
-        </TouchableOpacity>
-
+          <TouchableOpacity
+            style={styles.cardWrapepr}
+            onPress={() => navigation.navigate("Test")}
+          >
+            <GroupCard />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cardWrapepr}
+            onPress={() => navigation.navigate("Test")}
+          >
+            <GroupCard />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.cardWrapepr}
+            onPress={() => navigation.navigate("Test")}
+          >
+            <GroupCard />
+          </TouchableOpacity>
+        </ScrollView>
         <Pressable
           onPress={() => dispatch(logout())}
           style={({ pressed }) => [
