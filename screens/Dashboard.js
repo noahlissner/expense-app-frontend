@@ -61,7 +61,7 @@ const Dashboard = ({ navigation }) => {
           </TouchableOpacity>
         </ScrollView>
         <Pressable
-          onPress={() => dispatch(logout())}
+          onPress={() => navigation.navigate("CreateGroup")}
           style={({ pressed }) => [
             {
               backgroundColor: pressed ? "#144EFE" : "#3869FE",
