@@ -39,6 +39,36 @@ export const fetchGroup = createAsyncThunk(
 	}
 );
 
+export const createGroup = createAsyncThunk(
+	'group/create',
+	async (data, thunkAPI) => {
+		try {
+			return await groupService.createGroup(data);
+		} catch (err) {
+			const message =
+				(err.response && err.response.data && err.response.data.message) ||
+				err.message ||
+				err.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
+export const deleteGroup = createAsyncThunk(
+	'group/create',
+	async (data, thunkAPI) => {
+		try {
+			return await groupService.deleteGroup(data);
+		} catch (err) {
+			const message =
+				(err.response && err.response.data && err.response.data.message) ||
+				err.message ||
+				err.toString();
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
 export const groupSlice = createSlice({
 	name: 'groups',
 	initialState,
@@ -68,3 +98,6 @@ export const groupSlice = createSlice({
 			});
 	},
 });
+
+export const { reset } = groupSlice.actions;
+export default groupSlice.reducer;

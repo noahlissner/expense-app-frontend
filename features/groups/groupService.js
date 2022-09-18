@@ -13,9 +13,21 @@ const fetchGroup = async (data) => {
 	return res.data;
 };
 
+const createGroup = async (data) => {
+	const res = await axios.post(API_URL + 'create', data);
+	return res.data;
+};
+
+const deleteGroup = async (data) => {
+	const res = await axios.post(API_URL + 'delete', data);
+	return res.data;
+};
+
 const groupService = {
 	fetchGroups,
 	fetchGroup,
+	createGroup,
+	deleteGroup,
 };
 
 export default groupService;
