@@ -12,7 +12,7 @@ import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GroupCard from '../components/GroupCard';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../features/auth/authSlice';
 import { fetchGroups } from '../features/groups/groupSlice';
 
@@ -27,6 +27,10 @@ const Dashboard = ({ navigation }) => {
 	useEffect(() => {
 		dispatch(fetchGroups());
 	}, []);
+
+	const { groups } = useSelector((state) => state.groups);
+
+	console.log('Groups', groups);
 
 	const onRefresh = React.useCallback(() => {
 		setRefreshing(true);
