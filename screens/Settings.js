@@ -2,19 +2,23 @@ import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import UserCard from "../components/UserCard";
 import { logout } from "../features/auth/authSlice";
-const Modal = ({ navigation }) => {
+const Settings = ({ navigation }) => {
   const { user } = useSelector((state) => state.auth);
 
+  const dispatch = useDispatch();
   return (
     <View style={styles.wrapper}>
-      <UserCard user={user} />
-      <TouchableOpacity style={styles.logout}>
+      <UserCard user={user} navigation={navigation} />
+      <TouchableOpacity
+        onPress={() => dispatch(logout())}
+        style={styles.logout}
+      >
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </View>
   );
 };
-export default Modal;
+export default Settings;
 
 const styles = StyleSheet.create({
   wrapper: {

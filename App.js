@@ -13,21 +13,22 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./store/store";
 import { initUser } from "./features/auth/authSlice";
-import Modal from "./screens/Modal";
+import Settings from "./screens/Settings";
 import CreateGroup from "./screens/CreateGroup";
+import EditUser from "./screens/EditUser";
 
 const Stack = createNativeStackNavigator();
 
 export default function AppWrapper() {
-	return (
-		<Provider store={store}>
-			<App />
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 }
 
 const App = () => {
-	const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <SafeAreaProvider>
@@ -91,7 +92,7 @@ const App = () => {
                     },
                     headerRight: () => (
                       <TouchableOpacity
-                        onPress={() => navigation.navigate("Modal")}
+                        onPress={() => navigation.navigate("Settings")}
                       >
                         <Ionicons
                           name="settings-outline"
@@ -102,6 +103,7 @@ const App = () => {
                     ),
                   })}
                 />
+
                 <Stack.Screen
                   name="Test"
                   component={Test}
@@ -130,8 +132,8 @@ const App = () => {
               </Stack.Group>
               <Stack.Group screenOptions={{ presentation: "modal" }}>
                 <Stack.Screen
-                  name="Modal"
-                  component={Modal}
+                  name="Settings"
+                  component={Settings}
                   options={({ navigation }) => ({
                     headerStyle: {
                       backgroundColor: "#F1F3F4",
@@ -188,10 +190,10 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

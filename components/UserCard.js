@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user, navigation }) => {
   return (
     <View style={styles.wrapper}>
       {/* Left */}
@@ -15,7 +15,10 @@ const UserCard = ({ user }) => {
         </View>
       </View>
       {/* Right */}
-      <Pressable style={styles.editProfile}>
+      <Pressable
+        onPress={() => navigation.navigate("EditUser")}
+        style={styles.editProfile}
+      >
         <Text style={styles.editProfileText}>Edit profile</Text>
         <Ionicons name="chevron-forward-outline" size={16} color="#fff" />
       </Pressable>
