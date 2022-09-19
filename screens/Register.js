@@ -74,9 +74,25 @@ const Register = ({ navigation }) => {
 						</View>
 						{/* Phone */}
 						<View style={[styles.phoneInputContainer, styles.inputGap]}>
+							<Pressable
+								onPress={() => navigation.navigate('CountryCodeModal')}
+								style={({ pressed }) => [
+									{
+										backgroundColor: pressed ? '#144EFE' : '#3869FE',
+									},
+									styles.countryBtn,
+								]}
+							>
+								<Ionicons
+									style={[styles.countryBtnIcon]}
+									name='swap-vertical-outline'
+									size={18}
+								/>
+								<Text style={[styles.countryBtnText]}>+46</Text>
+							</Pressable>
 							<TextInput
 								keyboardType='phone-pad'
-								style={styles.input}
+								style={[styles.input, styles.phoneInput]}
 								placeholder='Phone'
 								textContentType='telephoneNumber'
 								onChangeText={(text) => setPhone(text)}
@@ -221,6 +237,45 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 		fontSize: 16,
 		color: '#fff',
+	},
+
+	phoneInputContainer: {
+		width: '100%',
+		flexDirection: 'row',
+	},
+
+	phoneInput: {
+		paddingRight: 20,
+		height: 60,
+		backgroundColor: '#fff',
+		borderTopRightRadius: 14,
+		borderBottomRightRadius: 14,
+		borderTopLeftRadius: 0,
+		borderBottomLeftRadius: 0,
+		fontSize: 16,
+		flex: 1,
+	},
+
+	countryBtn: {
+		alignContent: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+		width: 80,
+		borderTopLeftRadius: 14,
+		borderBottomLeftRadius: 14,
+	},
+
+	countryBtnText: {
+		color: '#fff',
+		fontWeight: 'bold',
+		alignSelf: 'center',
+	},
+
+	countryBtnIcon: {
+		color: '#fff',
+		fontWeight: 'bold',
+		alignSelf: 'center',
+		marginRight: 5,
 	},
 
 	// Continue With
