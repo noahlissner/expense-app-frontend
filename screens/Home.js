@@ -33,7 +33,7 @@ const Home = ({ navigation }) => {
             // style={styles.loginBtn}
             style={({ pressed }) => [
               {
-                backgroundColor: pressed ? "#D5DEF6" : "#D5DEF6",
+                backgroundColor: pressed ? "#C4D4FD " : "#D5DEF6",
               },
               styles.loginBtn,
             ]}
@@ -63,22 +63,20 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     marginTop: 50,
-    width: 310,
-    height: 57,
     borderRadius: 14,
     flexDirection: "row",
-    backgroundColor: "#D5DEF6",
   },
   loginBtn: {
-    flex: 1,
-    borderTopRightRadius: 14,
-    borderBottomRightRadius: 14,
+    width: 160,
+    height: 60,
+    borderRadius: 14,
     justifyContent: "center",
     alignItems: "center",
+    marginLeft: 10,
   },
   registerBtn: {
-    // backgroundColor: "#3869FE",
-    flex: 1,
+    height: 60,
+    width: 160,
     borderRadius: 14,
     justifyContent: "center",
     alignItems: "center",

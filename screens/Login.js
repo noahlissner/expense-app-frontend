@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     height: "100%",
     width: "100%",
+    // backgroundColor: "#000",
   },
 
   title: {
@@ -143,9 +144,9 @@ const styles = StyleSheet.create({
   },
 
   topContainer: {
-    // flex: 1,
     height: "100%",
     justifyContent: "center",
+    // backgroundColor: "#000",
   },
 
   // Inputs
