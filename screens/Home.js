@@ -1,5 +1,5 @@
 import { View, Text, Button, StyleSheet, Image, Pressable } from "react-native";
-import img from "./assets/piggy.png";
+import img from "../assets/piggy.png";
 const Home = ({ navigation }) => {
   return (
     <View
