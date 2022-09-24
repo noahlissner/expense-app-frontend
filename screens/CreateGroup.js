@@ -16,7 +16,7 @@ const CreateGroup = () => {
   const [members, setMembers] = React.useState([]);
 
   const handleMemberSubmit = () => {
-    if (!members.includes(tempMember)) {
+    if (!members.includes(tempMember) && tempMember !== "") {
       setMembers((current) => [tempMember, ...current]);
     }
     setTempMember("");
@@ -49,7 +49,7 @@ const CreateGroup = () => {
               <TextInput
                 keyboardType="default"
                 style={styles.memberInput}
-                placeholder="Name, Email or Phone"
+                placeholder="Email or Phone"
                 onChangeText={(text) => setTempMember(text)}
                 value={tempMember}
               />

@@ -44,7 +44,7 @@ const Dashboard = ({ navigation }) => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          {groups.myGroups.map((group) => (
+          {groups?.myGroups.map((group) => (
             <TouchableOpacity
               style={styles.cardWrapper}
               onPress={() => navigation.navigate("Test")}
