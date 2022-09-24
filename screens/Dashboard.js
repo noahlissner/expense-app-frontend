@@ -28,9 +28,7 @@ const Dashboard = ({ navigation }) => {
     dispatch(fetchGroups());
   }, []);
 
-  const { groups } = useSelector((state) => state.groups);
-
-  console.log("Groups", groups);
+  const { groups, isLoading } = useSelector((state) => state.groups);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -46,24 +44,15 @@ const Dashboard = ({ navigation }) => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          <TouchableOpacity
-            style={styles.cardWrapepr}
-            onPress={() => navigation.navigate("Test")}
-          >
-            <GroupCard />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.cardWrapepr}
-            onPress={() => navigation.navigate("Test")}
-          >
-            <GroupCard />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.cardWrapepr}
-            onPress={() => navigation.navigate("Test")}
-          >
-            <GroupCard />
-          </TouchableOpacity>
+          {groups.myGroups.map((group) => (
+            <TouchableOpacity
+              style={styles.cardWrapper}
+              onPress={() => navigation.navigate("Test")}
+              key={group.id}
+            >
+              <GroupCard group={group} />
+            </TouchableOpacity>
+          ))}
         </ScrollView>
         <Pressable
           onPress={() => navigation.navigate("CreateGroup")}
@@ -89,7 +78,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     height: "100%",
   },
-  cardWrapepr: {
+  cardWrapper: {
     marginBottom: 10,
   },
 
