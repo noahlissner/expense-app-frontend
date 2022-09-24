@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  Pressable,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import GroupInfoSquares from "../components/GroupInfoSquares";
@@ -39,7 +46,7 @@ const DATA = [
   },
 ];
 
-const Test = () => {
+const Test = ({ navigation }) => {
   const [active, setActive] = useState("Expenses");
 
   return (
@@ -64,14 +71,14 @@ const Test = () => {
           {/* Expenses */}
 
           {active === "Expenses" && (
-            <View style={styles.expensesContainer}>
-              <FlatList
-                data={DATA}
-                renderItem={ExpenseCard}
-                keyExtractor={(item) => item.id}
-                showsVerticalScrollIndicator={false}
-              />
-            </View>
+            <ScrollView style={styles.expensesContainer}>
+              <Pressable onPress={() => navigation.navigate("Expense")}>
+                <ExpenseCard />
+              </Pressable>
+              <Pressable onPress={() => navigation.navigate("Expense")}>
+                <ExpenseCard />
+              </Pressable>
+            </ScrollView>
           )}
 
           {/* Balance */}

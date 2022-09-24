@@ -17,6 +17,7 @@ import Settings from "./screens/Settings";
 import CreateGroup from "./screens/CreateGroup";
 import EditUser from "./screens/EditUser";
 import CountryCodeModal from "./screens/CountryCodeModal";
+import Expense from "./screens/Expense";
 
 const Stack = createNativeStackNavigator();
 
@@ -205,6 +206,28 @@ const App = () => {
                           size={30}
                           color="#2D2F33"
                         />
+                      </TouchableOpacity>
+                    ),
+                  })}
+                />
+
+                <Stack.Screen
+                  name="Expense"
+                  component={Expense}
+                  options={({ navigation }) => ({
+                    headerStyle: {
+                      backgroundColor: "#3869FE",
+                    },
+                    headerTitleStyle: {
+                      fontSize: 20,
+                      fontWeight: "500",
+                      color: "#fff",
+                    },
+                    headerShadowVisible: false,
+                    headerTitle: "Expense",
+                    headerRight: () => (
+                      <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Ionicons name="close-outline" size={30} color="#fff" />
                       </TouchableOpacity>
                     ),
                   })}

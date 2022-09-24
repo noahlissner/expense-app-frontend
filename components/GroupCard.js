@@ -1,13 +1,17 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
-const GroupCard = () => {
+const GroupCard = ({ group }) => {
+  console.log(group);
   return (
     <View style={styles.cardWrapper}>
       {/* Left Side */}
       <View style={styles.leftSide}>
         <Text style={styles.groupName}>Group Name 1</Text>
-        <Text style={styles.amountPeople}>5 people</Text>
+        <Text style={styles.amountPeople}>
+          {group.members.length}{" "}
+          {group.members.length > 1 ? "people" : "person"}
+        </Text>
       </View>
       {/* Right Side */}
       <View style={styles.rightSide}>
