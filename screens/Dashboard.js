@@ -13,7 +13,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import GroupCard from "../components/GroupCard";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../features/auth/authSlice";
 import { fetchGroups } from "../features/groups/groupSlice";
 
 const wait = (timeout) => {
@@ -44,7 +43,7 @@ const Dashboard = ({ navigation }) => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          {groups?.myGroups.map((group) => (
+          {groups?.data.map((group) => (
             <TouchableOpacity
               style={styles.cardWrapper}
               onPress={() => navigation.navigate("Test")}
