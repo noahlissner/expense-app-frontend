@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import groupService from './groupsService';
+import groupsService from './groupsService';
 
 const initialState = {
-	groups: null,
+	data: null,
 	isError: false,
 	isLoading: false,
 	isSuccess: false,
@@ -13,52 +13,7 @@ export const fetchGroups = createAsyncThunk(
 	'group/fetchall',
 	async (_, thunkAPI) => {
 		try {
-			return await groupService.fetchGroups();
-		} catch (err) {
-			const message =
-				(err.response && err.response.data && err.response.data.message) ||
-				err.message ||
-				err.toString();
-			return thunkAPI.rejectWithValue(message);
-		}
-	}
-);
-
-export const fetchGroup = createAsyncThunk(
-	'group/fetch',
-	async (data, thunkAPI) => {
-		try {
-			return await groupService.fetchGroup(data);
-		} catch (err) {
-			const message =
-				(err.response && err.response.data && err.response.data.message) ||
-				err.message ||
-				err.toString();
-			return thunkAPI.rejectWithValue(message);
-		}
-	}
-);
-
-export const createGroup = createAsyncThunk(
-	'group/create',
-	async (data, thunkAPI) => {
-		try {
-			return await groupService.createGroup(data);
-		} catch (err) {
-			const message =
-				(err.response && err.response.data && err.response.data.message) ||
-				err.message ||
-				err.toString();
-			return thunkAPI.rejectWithValue(message);
-		}
-	}
-);
-
-export const deleteGroup = createAsyncThunk(
-	'group/create',
-	async (data, thunkAPI) => {
-		try {
-			return await groupService.deleteGroup(data);
+			return await groupsService.fetchGroups();
 		} catch (err) {
 			const message =
 				(err.response && err.response.data && err.response.data.message) ||
@@ -88,13 +43,13 @@ export const groupsSlice = createSlice({
 			.addCase(fetchGroups.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.isSuccess = true;
-				state.groups = action.payload;
+				state.data = action.payload;
 			})
 			.addCase(fetchGroups.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;
-				state.groups = null;
+				state.data = null;
 			});
 	},
 });
