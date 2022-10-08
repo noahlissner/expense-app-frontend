@@ -22,44 +22,8 @@ const fetchGroups = async () => {
 	return res.data;
 };
 
-const fetchGroup = async (data) => {
-	const config = {
-		headers: {
-			authorization: `Bearer ${await getToken()}`,
-		},
-	};
-
-	const res = await axios.post(API_URL + 'fetch', data, config);
-	return res.data;
-};
-
-const createGroup = async (data) => {
-	const config = {
-		headers: {
-			authorization: `Bearer ${await getToken()}`,
-		},
-	};
-
-	const res = await axios.post(API_URL + 'create', data, config);
-	return res.data;
-};
-
-const deleteGroup = async (data) => {
-	const config = {
-		headers: {
-			authorization: `Bearer ${await getToken()}`,
-		},
-	};
-
-	const res = await axios.post(API_URL + 'delete', data, config);
-	return res.data;
-};
-
 const groupsService = {
 	fetchGroups,
-	fetchGroup,
-	createGroup,
-	deleteGroup,
 };
 
 export default groupsService;
