@@ -23,16 +23,22 @@ const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = React.useState(false);
 
+  const groups = useSelector((state) => state.groups);
+
   useEffect(() => {
     dispatch(fetchGroups());
   }, []);
-
-  const { groups, isLoading } = useSelector((state) => state.groups);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
+
+  const openGroupHandler = (id) => {
+    // console.log(id);
+
+    navigation.navigate("Group");
+  };
 
   return (
     <SafeAreaView>
@@ -43,10 +49,10 @@ const Dashboard = ({ navigation }) => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          {groups?.data.map((group) => (
+          {groups?.groups?.data.map((group) => (
             <TouchableOpacity
               style={styles.cardWrapper}
-              onPress={() => navigation.navigate("Test")}
+              onPress={() => openGroupHandler(group.id)}
               key={group.id}
             >
               <GroupCard group={group} />
