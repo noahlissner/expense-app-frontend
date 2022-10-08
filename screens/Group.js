@@ -46,7 +46,7 @@ const DATA = [
   },
 ];
 
-const Test = ({ navigation }) => {
+const Group = ({ navigation }) => {
   const [active, setActive] = useState("Expenses");
 
   return (
@@ -87,12 +87,23 @@ const Test = ({ navigation }) => {
           {/* Settlement */}
           {active === "Settlement" && <Text>Settlement</Text>}
         </View>
+        <Pressable
+          onPress={() => navigation.navigate("CreateExpense")}
+          style={({ pressed }) => [
+            {
+              backgroundColor: pressed ? "#144EFE" : "#3869FE",
+            },
+            styles.addBtn,
+          ]}
+        >
+          <Ionicons name="add-outline" color="#fff" size={32} />
+        </Pressable>
       </View>
     </SafeAreaView>
   );
 };
 
-export default Test;
+export default Group;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -110,5 +121,17 @@ const styles = StyleSheet.create({
   expensesContainer: {
     marginTop: 30,
     height: 500,
+  },
+
+  addBtn: {
+    position: "absolute",
+    bottom: 0,
+    left: "50%",
+    transform: [{ translateX: -32 }],
+    height: 65,
+    width: 65,
+    borderRadius: 999,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
