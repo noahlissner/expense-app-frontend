@@ -1,14 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
-import authReducer, { initUser } from "../features/auth/authSlice";
-import groupReducer from "../features/groups/groupSlice";
-import countryReducer from "../features/country/countrySlice";
+import { configureStore } from '@reduxjs/toolkit';
+import authReducer, { initUser } from '../features/auth/authSlice';
+import groupsReducer from '../features/groups/groupsSlice';
+import countryReducer from '../features/country/countrySlice';
 
 const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    groups: groupReducer,
-    country: countryReducer,
-  },
+	reducer: {
+		auth: authReducer,
+		groups: groupsReducer,
+		country: countryReducer,
+	},
 });
 
 store.dispatch(initUser());
