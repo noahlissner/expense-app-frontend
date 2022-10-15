@@ -1,20 +1,23 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-const ExpenseCard = () => {
+const ExpenseCard = ({ expense, amount }) => {
   return (
     <View style={styles.wrapper}>
       {/* Left */}
       <View style={styles.containerLeft}>
         <Ionicons name="person-circle-outline" size={48} color="#525252" />
         <View style={styles.expenseInfo}>
-          <Text style={styles.expenseTitle}>Dinner</Text>
+          <Text style={styles.expenseTitle}>{expense.title}</Text>
           <Text style={styles.expenseDate}>
-            May 30 - <Text style={styles.expenseOwner}>By Mark</Text>
+            May 30 -{" "}
+            <Text style={styles.expenseOwner}>
+              By {expense.owner.firstname}
+            </Text>
           </Text>
         </View>
       </View>
       {/* Right */}
-      <Text>$50,00</Text>
+      <Text>${expense.amount}</Text>
     </View>
   );
 };

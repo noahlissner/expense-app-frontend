@@ -10,7 +10,7 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
-import groupSlice, { createGroup } from "../features/groups/groupSlice";
+import groupSlice, { createGroup } from "../features/group/groupSlice";
 
 const CreateGroup = () => {
   const dispatch = useDispatch();

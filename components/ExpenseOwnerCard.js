@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-const ExpenseOwnerCard = () => {
+const ExpenseOwnerCard = ({ user, amount }) => {
   return (
     <View style={styles.wrapper}>
       {/* Left */}
@@ -9,14 +9,14 @@ const ExpenseOwnerCard = () => {
         <Ionicons name="person-circle-outline" size={48} color="#525252" />
         <View style={styles.userInfo}>
           <Text style={styles.userInfoName}>
-            {user.firstname} {user.lastname}
+            {user?.firstname} {user?.lastname}
           </Text>
-          <Text style={styles.userInfoEmail}>{user.email}</Text>
+          <Text style={styles.userInfoEmail}>{user?.email}</Text>
         </View>
       </View>
       {/* Right */}
       <View style={styles.containerRight}>
-        <Text style={styles.amount}>$50,00</Text>
+        <Text style={styles.amount}>${amount?.toFixed(2)}</Text>
         <Text style={styles.amountText}>Total Expense</Text>
       </View>
     </View>

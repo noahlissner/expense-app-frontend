@@ -12,48 +12,27 @@ import GroupInfoSquares from "../components/GroupInfoSquares";
 import GroupNavLink from "../components/GroupNavLink";
 import ExpenseCard from "../components/ExpenseCard";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-const DATA = [
-  {
-    id: "1",
-  },
-  {
-    id: "2",
-  },
-  {
-    id: "3",
-  },
-  {
-    id: "4",
-  },
-  {
-    id: "5",
-  },
-  {
-    id: "6",
-  },
-  {
-    id: "7",
-  },
-  {
-    id: "8",
-  },
-  {
-    id: "9",
-  },
-  {
-    id: "10",
-  },
-];
+import { useSelector } from "react-redux";
 
 const Group = ({ navigation }) => {
   const [active, setActive] = useState("Expenses");
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    const totalAmount = group?.data?.data?.expenses?.reduce((prev, cur) => {
+      return prev + cur.amount;
+    }, 0);
+
+    setTotalAmount(totalAmount);
+  }, [group]);
+
+  const group = useSelector((state) => state.group);
 
   return (
     <SafeAreaView>
       <View style={styles.wrapper}>
         {/* Top squares */}
-        <GroupInfoSquares />
+        <GroupInfoSquares total={totalAmount} />
         <View style={styles.nav}>
           <GroupNavLink
             active={active}
@@ -70,16 +49,19 @@ const Group = ({ navigation }) => {
         <View style={styles.mainContainer}>
           {/* Expenses */}
 
-          {active === "Expenses" && (
-            <ScrollView style={styles.expensesContainer}>
-              <Pressable onPress={() => navigation.navigate("Expense")}>
-                <ExpenseCard />
-              </Pressable>
-              <Pressable onPress={() => navigation.navigate("Expense")}>
-                <ExpenseCard />
-              </Pressable>
-            </ScrollView>
-          )}
+          <ScrollView style={styles.expensesContainer}>
+            {active === "Expenses" &&
+              group?.data?.data?.expenses.map((expense) => (
+                <Pressable
+                  onPress={() =>
+                    navigation.navigate("Expense", { expenseId: expense.id })
+                  }
+                  key={expense.id}
+                >
+                  <ExpenseCard expense={expense} />
+                </Pressable>
+              ))}
+          </ScrollView>
 
           {/* Balance */}
           {active === "Balance" && <Text>Balance</Text>}

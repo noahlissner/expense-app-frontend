@@ -2,17 +2,31 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ExpenseOwnerCard from "../components/ExpenseOwnerCard";
 import ExpenseMemberCard from "../components/ExpenseMemberCard";
-const Expense = () => {
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+const Expense = ({ route, navigation }) => {
+  const [expense, setExpense] = useState();
+
+  const group = useSelector((state) => state.group);
+  console.log(expense);
+
+  useEffect(() => {
+    const foundExpense = group.data.data.expenses.find(
+      (expense) => expense.id === route.params.expenseId
+    );
+    setExpense(foundExpense);
+  }, []);
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.expenseOwner}>
-        <ExpenseOwnerCard />
+        <ExpenseOwnerCard user={expense?.owner} amount={expense?.amount} />
       </View>
 
       {/* expense info */}
       <View style={styles.expenseInfoContainer}>
         <View style={styles.expenseDesc}>
-          <Text style={styles.expenseDescValue}>Dinner</Text>
+          <Text style={styles.expenseDescValue}>{expense?.title}</Text>
           <Text style={styles.expenseDescTitle}>Description</Text>
         </View>
         <View style={styles.expenseDate}>
@@ -23,9 +37,9 @@ const Expense = () => {
       {/* Expense members */}
       <ScrollView style={styles.expenseMembersContainer}>
         {/*  */}
-        <ExpenseMemberCard />
-        <ExpenseMemberCard />
-        <ExpenseMemberCard />
+        {expense?.users.map((member) => (
+          <ExpenseMemberCard member={member} key={member.id} />
+        ))}
         {/*  */}
       </ScrollView>
     </View>

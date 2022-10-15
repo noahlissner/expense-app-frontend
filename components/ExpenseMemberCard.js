@@ -1,14 +1,19 @@
 import { View, Text, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-const ExpenseMemberCard = () => {
+const ExpenseMemberCard = ({ member }) => {
+  console.log(member);
   return (
     <View style={styles.expenseMember}>
       <View style={styles.expenseMemberLeft}>
         <Ionicons name="person-circle-outline" size={48} color="#525252" />
-        <Text style={styles.expenseMemberName}>John Doe</Text>
+        <Text style={styles.expenseMemberName}>
+          {member.firstname} {member.lastname}
+        </Text>
       </View>
-      <Text style={styles.expenseMemberAmount}>$10,00</Text>
+      <Text style={styles.expenseMemberAmount}>
+        ${member.amount.toFixed(2)}
+      </Text>
     </View>
   );
 };
