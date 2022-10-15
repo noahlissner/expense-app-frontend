@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-  Pressable,
-} from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import GroupInfoSquares from "../components/GroupInfoSquares";
@@ -27,7 +20,7 @@ const Group = ({ navigation }) => {
   }, [group]);
 
   const group = useSelector((state) => state.group);
-
+  console.log(group);
   return (
     <SafeAreaView>
       <View style={styles.wrapper}>
@@ -51,7 +44,7 @@ const Group = ({ navigation }) => {
 
           <ScrollView style={styles.expensesContainer}>
             {active === "Expenses" &&
-              group?.data?.data?.expenses.map((expense) => (
+              group?.data?.data?.expenses?.map((expense) => (
                 <Pressable
                   onPress={() =>
                     navigation.navigate("Expense", { expenseId: expense.id })

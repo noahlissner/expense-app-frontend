@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import img from "../assets/group.png";
 
 const GroupInfoSquares = ({ total }) => {
-  console.log(total);
   return (
     <View style={styles.infoSquares}>
       <View style={styles.infoSquareLeft}>

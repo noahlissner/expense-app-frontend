@@ -2,7 +2,6 @@ import { View, Text, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const ExpenseMemberCard = ({ member }) => {
-  console.log(member);
   return (
     <View style={styles.expenseMember}>
       <View style={styles.expenseMemberLeft}>

@@ -8,7 +8,6 @@ const Expense = ({ route, navigation }) => {
   const [expense, setExpense] = useState();
 
   const group = useSelector((state) => state.group);
-  console.log(expense);
 
   useEffect(() => {
     const foundExpense = group.data.data.expenses.find(

@@ -41,6 +41,7 @@ const Dashboard = ({ navigation }) => {
     dispatch(fetchGroup(id));
     navigation.navigate("Group");
   };
+
   return (
     <SafeAreaView>
       <View style={styles.wrapper}>
