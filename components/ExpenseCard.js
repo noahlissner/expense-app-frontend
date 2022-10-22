@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-const ExpenseCard = ({ expense, amount }) => {
+const ExpenseCard = ({ expense }) => {
   return (
     <View style={styles.wrapper}>
       {/* Left */}
@@ -17,7 +17,7 @@ const ExpenseCard = ({ expense, amount }) => {
         </View>
       </View>
       {/* Right */}
-      <Text>${expense.amount}</Text>
+      <Text>${expense.amount.toFixed(2)}</Text>
     </View>
   );
 };

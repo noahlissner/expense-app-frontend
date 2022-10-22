@@ -36,7 +36,7 @@ const Expense = ({ route, navigation }) => {
       {/* Expense members */}
       <ScrollView style={styles.expenseMembersContainer}>
         {/*  */}
-        {expense?.users.map((member) => (
+        {expense?.users?.map((member) => (
           <ExpenseMemberCard member={member} key={member.id} />
         ))}
         {/*  */}

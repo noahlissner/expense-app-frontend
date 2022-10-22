@@ -1,8 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
-const API_URL =
-  "https://expense-app-backend-production.up.railway.app/api/groups/";
+const API_URL = "https://orca-app-tzhfj.ondigitalocean.app/api/groups/";
 
 const getToken = async () => {
   const res = await AsyncStorage.getItem("user");

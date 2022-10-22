@@ -32,15 +32,13 @@ export default function AppWrapper() {
 
 const App = () => {
   const { user } = useSelector((state) => state.auth);
+  const group = useSelector((state) => state.group);
 
   return (
     <SafeAreaProvider>
       <NavigationContainer>
         <StatusBar />
-        <Stack.Navigator
-          // initialRouteName={user ? 'Dashboard' : 'Home'}
-          screenOptions={{ headerTintColor: "#000" }}
-        >
+        <Stack.Navigator screenOptions={{ headerTintColor: "#000" }}>
           {!user ? (
             <>
               <Stack.Group>
@@ -144,7 +142,7 @@ const App = () => {
                     },
                     headerShadowVisible: false,
                     headerBackTitleVisible: false,
-                    headerTitle: "Group",
+                    headerTitle: group?.data?.data?.title,
                     headerTitleStyle: {
                       fontSize: 24,
                       fontWeight: "500",
@@ -152,7 +150,7 @@ const App = () => {
                     headerRight: () => (
                       <TouchableOpacity>
                         <Ionicons
-                          name="settings-outline"
+                          name="ellipsis-vertical"
                           size={24}
                           color="#2D2F33"
                         />

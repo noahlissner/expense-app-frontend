@@ -21,6 +21,7 @@ const Group = ({ navigation }) => {
 
   const group = useSelector((state) => state.group);
   console.log(group);
+
   return (
     <SafeAreaView>
       <View style={styles.wrapper}>
