@@ -12,7 +12,7 @@ const Group = ({ navigation }) => {
   const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
-    const totalAmount = group?.data?.data?.expenses?.reduce((prev, cur) => {
+    const totalAmount = group?.data?.expenses?.reduce((prev, cur) => {
       return prev + cur.amount;
     }, 0);
 
@@ -20,7 +20,7 @@ const Group = ({ navigation }) => {
   }, [group]);
 
   const group = useSelector((state) => state.group);
-  console.log(group);
+  console.log(group.data);
 
   return (
     <SafeAreaView>
@@ -45,12 +45,12 @@ const Group = ({ navigation }) => {
 
           <ScrollView style={styles.expensesContainer}>
             {active === "Expenses" &&
-              group?.data?.data?.expenses?.map((expense) => (
+              group?.data?.expenses?.map((expense) => (
                 <Pressable
                   onPress={() =>
                     navigation.navigate("Expense", { expenseId: expense.id })
                   }
-                  key={expense.id}
+                  key={expense._id}
                 >
                   <ExpenseCard expense={expense} />
                 </Pressable>
