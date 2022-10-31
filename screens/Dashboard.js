@@ -13,7 +13,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import GroupCard from "../components/GroupCard";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGroups } from "../features/group/groupSlice";
+import { fetchGroup } from "../features/group/groupSlice";
+import { fetchGroups } from "../features/groups/groupsSlice";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -24,6 +25,7 @@ const Dashboard = ({ navigation }) => {
   const [refreshing, setRefreshing] = React.useState(false);
 
   const groups = useSelector((state) => state.groups);
+  const group = useSelector((state) => state.group);
 
   useEffect(() => {
     dispatch(fetchGroups());
@@ -35,8 +37,8 @@ const Dashboard = ({ navigation }) => {
   }, []);
 
   const openGroupHandler = (id) => {
-    // console.log(id);
-
+    console.log(id);
+    dispatch(fetchGroup(id));
     navigation.navigate("Group");
   };
 
@@ -49,7 +51,7 @@ const Dashboard = ({ navigation }) => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          {groups?.groups?.data.map((group) => (
+          {groups?.data?.map((group) => (
             <TouchableOpacity
               style={styles.cardWrapper}
               onPress={() => openGroupHandler(group.id)}
