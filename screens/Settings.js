@@ -1,18 +1,11 @@
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import UserCard from "../components/UserCard";
-import { logout } from "../features/auth/authSlice";
-const Settings = ({ navigation }) => {
-  const { user } = useSelector((state) => state.auth);
 
-  const dispatch = useDispatch();
+import UserCard from "../components/UserCard";
+const Settings = ({ navigation }) => {
   return (
     <View style={styles.wrapper}>
       <UserCard user={user} navigation={navigation} />
-      <TouchableOpacity
-        onPress={() => dispatch(logout())}
-        style={styles.logout}
-      >
+      <TouchableOpacity onPress={() => {}} style={styles.logout}>
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </View>

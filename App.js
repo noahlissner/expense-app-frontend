@@ -10,29 +10,33 @@ import { useState, useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Group from "./screens/Group";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import store from "./store/store";
-import { initUser } from "./features/auth/authSlice";
 import Settings from "./screens/Settings";
 import CreateGroup from "./screens/CreateGroup";
 import EditUser from "./screens/EditUser";
 import CountryCodeModal from "./screens/CountryCodeModal";
 import Expense from "./screens/Expense";
 import CreateExpense from "./screens/CreateExpense";
+import { useAuthContext } from "./context/AuthContext";
+
+// React Query
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { AuthProvider } from "./context/AuthContext";
 
 const Stack = createNativeStackNavigator();
+const queryClient = new QueryClient();
 
 export default function AppWrapper() {
   return (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </AuthProvider>
   );
 }
 
 const App = () => {
-  const { user } = useSelector((state) => state.auth);
-  const group = useSelector((state) => state.group);
+  const { user, token } = useAuthContext();
 
   return (
     <SafeAreaProvider>
@@ -133,7 +137,7 @@ const App = () => {
                   })}
                 />
 
-                <Stack.Screen
+                {/* <Stack.Screen
                   name="Group"
                   component={Group}
                   options={{
@@ -255,7 +259,7 @@ const App = () => {
                       </TouchableOpacity>
                     ),
                   })}
-                />
+                /> */}
               </Stack.Group>
             </>
           )}

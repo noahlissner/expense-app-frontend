@@ -9,11 +9,8 @@ import {
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useDispatch } from "react-redux";
-import groupSlice, { createGroup } from "../features/group/groupSlice";
 
 const CreateGroup = () => {
-  const dispatch = useDispatch();
   const [groupName, setGroupName] = React.useState("");
   const [tempMember, setTempMember] = React.useState("");
   const [members, setMembers] = React.useState([]);
@@ -37,7 +34,7 @@ const CreateGroup = () => {
       users: members,
     };
 
-    dispatch(createGroup(data));
+    //
   };
 
   return (

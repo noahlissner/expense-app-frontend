@@ -10,8 +10,6 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { register } from "../features/auth/authSlice";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Register = ({ navigation }) => {
@@ -22,11 +20,6 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const dispatch = useDispatch();
-
-  const { isLoading } = useSelector((state) => state.auth);
-  const { country } = useSelector((state) => state.country);
-
   const handleSubmit = () => {
     const data = {
       firstname,
@@ -36,8 +29,7 @@ const Register = ({ navigation }) => {
       password,
       confirmPassword,
     };
-
-    dispatch(register(data));
+    // Mutate
   };
 
   return (

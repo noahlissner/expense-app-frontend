@@ -5,22 +5,18 @@ import GroupInfoSquares from "../components/GroupInfoSquares";
 import GroupNavLink from "../components/GroupNavLink";
 import ExpenseCard from "../components/ExpenseCard";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useSelector } from "react-redux";
 
 const Group = ({ navigation }) => {
   const [active, setActive] = useState("Expenses");
   const [totalAmount, setTotalAmount] = useState(0);
 
-  useEffect(() => {
-    const totalAmount = group?.data?.expenses?.reduce((prev, cur) => {
-      return prev + cur.amount;
-    }, 0);
+  // useEffect(() => {
+  //   const totalAmount = group?.data?.expenses?.reduce((prev, cur) => {
+  //     return prev + cur.amount;
+  //   }, 0);
 
-    setTotalAmount(totalAmount);
-  }, [group]);
-
-  const group = useSelector((state) => state.group);
-  console.log(group.data);
+  //   setTotalAmount(totalAmount);
+  // }, [group]);
 
   return (
     <SafeAreaView>
@@ -43,7 +39,7 @@ const Group = ({ navigation }) => {
         <View style={styles.mainContainer}>
           {/* Expenses */}
 
-          <ScrollView style={styles.expensesContainer}>
+          {/* <ScrollView style={styles.expensesContainer}>
             {active === "Expenses" &&
               group?.data?.expenses?.map((expense) => (
                 <Pressable
@@ -55,7 +51,7 @@ const Group = ({ navigation }) => {
                   <ExpenseCard expense={expense} />
                 </Pressable>
               ))}
-          </ScrollView>
+          </ScrollView> */}
 
           {/* Balance */}
           {active === "Balance" && <Text>Balance</Text>}

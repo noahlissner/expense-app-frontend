@@ -3,18 +3,15 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import ExpenseOwnerCard from "../components/ExpenseOwnerCard";
 import ExpenseMemberCard from "../components/ExpenseMemberCard";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 const Expense = ({ route, navigation }) => {
   const [expense, setExpense] = useState();
 
-  const group = useSelector((state) => state.group);
-
-  useEffect(() => {
-    const foundExpense = group.data.data.expenses.find(
-      (expense) => expense.id === route.params.expenseId
-    );
-    setExpense(foundExpense);
-  }, []);
+  // useEffect(() => {
+  //   const foundExpense = group?.data?.data?.expenses?.find(
+  //     (expense) => expense.id === route.params.expenseId
+  //   );
+  //   setExpense(foundExpense);
+  // }, []);
 
   return (
     <View style={styles.wrapper}>

@@ -9,17 +9,13 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../features/auth/authSlice";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import useLogin from "../hooks/useLogin";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const dispatch = useDispatch();
-
-  const { isLoading } = useSelector((state) => state.auth);
+  const { dispatch, isLoading } = useLogin();
 
   const handleSubmit = () => {
     const data = {
@@ -27,7 +23,7 @@ const Login = ({ navigation }) => {
       password,
     };
 
-    dispatch(login(data));
+    dispatch(data);
   };
 
   return (
@@ -76,11 +72,11 @@ const Login = ({ navigation }) => {
               styles.loginBtn,
             ]}
           >
-            {isLoading ? (
+            {/* {isLoading ? (
               <ActivityIndicator color={"#fff"} />
             ) : (
               <Text style={styles.loginBtnText}>Login</Text>
-            )}
+            )} */}
           </Pressable>
           <View style={styles.continueWithContainer}>
             <View style={styles.continueWith}>

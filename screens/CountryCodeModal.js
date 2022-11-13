@@ -8,19 +8,17 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import countryCodes from "../assets/countryCodes.json";
-import { useDispatch, useSelector } from "react-redux";
-import { setCountry } from "../features/country/countrySlice";
 
 const CountryCodeModal = ({ navigation }) => {
   const [query, setQuery] = useState("");
   const [filteredArr, setFilteredArr] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState([]);
 
-  const { country } = useSelector((state) => state.country);
-  const dispatch = useDispatch();
+  // const { country } = useSelector((state) => state.country);
+  // const dispatch = useDispatch();
 
   const handleSelect = (country) => {
-    dispatch(setCountry(country));
+    // dispatch(setCountry(country));
 
     navigation.goBack();
   };
